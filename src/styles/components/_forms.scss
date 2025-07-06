@@ -1,0 +1,287 @@
+// Variables locales
+$form-control-padding: 0.5rem;
+$form-border-radius: 0.375rem;
+$form-border-color: var(--gray-medium);
+$form-focus-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+
+// Grupo de formulario
+.form-group {
+  margin-bottom: 1rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+// Control de formulario
+.form-control {
+  width: 100%;
+  padding: $form-control-padding;
+  border: 1px solid $form-border-color;
+  border-radius: $form-border-radius;
+  transition: var(--transition);
+  font-size: 0.875rem; // Reducido ligeramente
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: $form-focus-shadow;
+  }
+}
+
+// Input group
+.input-group {
+  position: relative;
+  margin-bottom: 2rem; // Aumentamos el margen inferior para los mensajes de error
+
+  i {
+    position: absolute;
+    top: 1rem; // Cambiamos de translateY(-50%) a un valor fijo
+    left: 1rem;
+    color: var(--primary-color);
+    font-size: 0.875rem;
+    z-index: 2;
+    transition: top 0.2s ease; // Suaviza el movimiento si es necesario
+  }
+
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid var(--gray-medium);
+    border-radius: 0.375rem;
+    font-size: 0.9375rem;
+    transition: var(--transition);
+
+    &:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    &[aria-invalid="true"] {
+      border-color: var(--status-error);
+    }
+  }
+
+  .input-error {
+    color: var(--status-error);
+    font-size: 0.75rem;
+    position: absolute;
+    bottom: -1.25rem; // Posicionamos el error debajo del input
+    left: 2.5rem; // Alineamos con el texto del input
+    width: calc(100% - 2.5rem);
+    margin-top: 0.25rem;
+  }
+}
+
+
+// Checkbox y radio
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 1.1rem;
+    height: 1.1rem;
+    cursor: pointer;
+  }
+
+  label {
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+}
+
+
+
+// Form actions
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
+}
+
+
+
+
+
+// Opciones del formulario (recordar, olvidar contraseña)
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  @media (min-width: 480px) {
+    flex-wrap: nowrap;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-light);
+    cursor: pointer;
+  }
+
+  .forgot-password {
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+}
+
+// Enlace para cambiar entre formularios
+.switch-form {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--text-light);
+
+  a {
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+}
+
+// En _forms.scss
+.signup-form {
+  @extend .form-container;
+
+  .input-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .notice {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
+  }
+}
+
+// Form grid
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+// Section styles
+.section-container {
+  padding: 1.25rem;
+}
+
+.section-title {
+  color: var(--primary-dark);
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+// Estilos específicos para react-hook-form
+.react-hook-form {
+  .input-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid var(--gray-medium);
+      border-radius: 0.375rem;
+      font-size: 0.9375rem;
+      transition: var(--transition);
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      &[aria-invalid="true"] {
+        border-color: var(--status-error);
+      }
+    }
+
+    i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary-color);
+    }
+  }
+
+  .input-error {
+    color: var(--status-error);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+  }
+}
+
+// Estilos específicos para formularios con react-hook-form
+.rhf-form {
+  width: 100%;
+
+  .input-group {
+    margin-bottom: 2rem;
+
+    input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.5rem;
+      border: 1px solid var(--gray-medium);
+      border-radius: 0.375rem;
+      font-size: 0.9375rem;
+      transition: var(--transition);
+
+      &:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      }
+
+      &[aria-invalid="true"] {
+        border-color: var(--status-error);
+      }
+    }
+
+    i {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary-color);
+    }
+  }
+
+  .input-error {
+    color: var(--status-error);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    display: block;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+}

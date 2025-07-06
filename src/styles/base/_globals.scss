@@ -1,0 +1,38 @@
+// Convierte variables SCSS a CSS para compatibilidad
+:root {
+    --primary-color: #{color(primary)};
+    --primary-dark: #{color(primary, dark)};
+    --primary-light: #{color(primary, light)};
+    --secondary-color: #{color(secondary)};
+    --accent-color: #{color(accent)};
+    --text-color: #{color(text, base)};
+    --text-light: #{color(text, light)};
+    --bg-color: #{color(background, base)};
+    --white: #{color(white)};
+    --gray-light: #{color(gray, light)};
+    --gray-medium: #{color(gray, medium)};
+    --shadow: #{shadow(md)};
+    --transition: #{transition(base)};
+
+    // Espaciado
+    --space-xs: #{spacing(xs)};
+    --space-sm: #{spacing(sm)};
+    --space-md: #{spacing(md)};
+    --space-lg: #{spacing(lg)};
+    --space-xl: #{spacing(xl)};
+
+    // Tamaños de fuente
+    --text-xs: #{font-size(xs)};
+    --text-sm: #{font-size(sm)};
+    --text-base: #{font-size(base)};
+    --text-lg: #{font-size(lg)};
+    --text-xl: #{font-size(xl)};
+    --text-2xl: #{font-size(xxl)};
+
+    --border-radius-none: #{radius(none)};
+    --border-radius-sm: #{radius(sm)};
+    --border-radius-base: #{radius(base)};
+    --border-radius-md: #{radius(md)};
+    --border-radius-lg: #{radius(lg)};
+    --border-radius-full: #{radius(full)};
+}

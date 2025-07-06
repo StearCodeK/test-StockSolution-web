@@ -1,0 +1,186 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: color(text, base);
+  background-color: color(background, base); // Usando la función SCSS
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Jerarquía tipográfica
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: map-get($font-weights, semibold);
+  line-height: 1.2;
+  margin-bottom: spacing(sm);
+  color: color(primary, dark);
+}
+
+h1 {
+  font-size: font-size(xxl);
+
+  @media (min-width: map-get($breakpoints, md)) {
+    font-size: clamp(font-size(xxl), 5vw, 2.5rem);
+  }
+}
+
+h2 {
+  font-size: font-size(xl);
+
+  @media (min-width: map-get($breakpoints, md)) {
+    font-size: clamp(font-size(xl), 4vw, 2rem);
+  }
+}
+
+h3 {
+  font-size: font-size(lg);
+}
+
+h4 {
+  font-size: font-size(md);
+}
+
+p {
+  margin-bottom: spacing(md);
+  font-size: font-size(base);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Tipografía utilitaria
+.text {
+  &-xs {
+    font-size: font-size(xs);
+  }
+
+  &-sm {
+    font-size: font-size(sm);
+  }
+
+  &-md {
+    font-size: font-size(md);
+  }
+
+  &-lg {
+    font-size: font-size(lg);
+  }
+
+  &-xl {
+    font-size: font-size(xl);
+  }
+
+  &-xxl {
+    font-size: font-size(xxl);
+  }
+
+  &-light {
+    font-weight: map-get($font-weights, light);
+  }
+
+  &-regular {
+    font-weight: map-get($font-weights, regular);
+  }
+
+  &-medium {
+    font-weight: map-get($font-weights, medium);
+  }
+
+  &-semibold {
+    font-weight: map-get($font-weights, semibold);
+  }
+
+  &-bold {
+    font-weight: map-get($font-weights, bold);
+  }
+
+  &-primary {
+    color: color(primary);
+  }
+
+  &-secondary {
+    color: color(secondary);
+  }
+
+  &-light {
+    color: color(text, light);
+  }
+
+  &-success {
+    color: color(status, success);
+  }
+
+  &-error {
+    color: color(status, error);
+  }
+
+  &-warning {
+    color: color(status, warning);
+  }
+
+  &-info {
+    color: color(status, info);
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-justify {
+    text-align: justify;
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
+  }
+
+  &-lowercase {
+    text-transform: lowercase;
+  }
+
+  &-capitalize {
+    text-transform: capitalize;
+  }
+
+  &-normal-case {
+    text-transform: none;
+  }
+
+  &-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// Enlaces
+a {
+  color: color(primary);
+  text-decoration: none;
+  transition: transition(base);
+
+  &:hover {
+    color: color(primary, dark);
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 2px solid color(primary);
+    outline-offset: 2px;
+  }
+}

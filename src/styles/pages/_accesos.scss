@@ -1,0 +1,277 @@
+// _accesos.scss - Versión corregida y mejorada
+
+.accesos-page {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - var(--header-height));
+    background-color: var(--gray-ultralight);
+
+    .main-content {
+        flex: 1;
+        padding: var(--space-xl);
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+.admin-tabs {
+    background-color: var(--white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-lg);
+    margin-top: var(--space-lg);
+
+    .tabs-header {
+        display: flex;
+        border-bottom: 2px solid var(--gray-light);
+        margin-bottom: var(--space-lg);
+        gap: var(--space-md);
+
+        .tab-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: var(--space-sm) var(--space-md);
+            font-size: var(--text-md);
+            transition: all var(--transition);
+
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 100%;
+                height: 3px;
+                background: transparent;
+                transition: background-color var(--transition);
+            }
+
+            &.active-tab {
+                color: var(--primary-color);
+                font-weight: 600;
+
+                &:after {
+                    background: var(--primary-color);
+                }
+            }
+
+            &:hover:not(.active-tab) {
+                color: var(--primary-dark);
+            }
+        }
+    }
+
+    .refresh-container {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: var(--space-lg);
+
+        .btn-refresh {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-base);
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: background-color var(--transition);
+            cursor: pointer;
+
+            &:hover {
+                background-color: var(--primary-dark);
+            }
+
+            i {
+                font-size: var(--text-sm);
+            }
+        }
+    }
+
+    .tab-content {
+        min-height: 300px;
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--space-md);
+
+            th,
+            td {
+                padding: var(--space-md) var(--space-lg);
+                text-align: left;
+                border-bottom: 1px solid var(--gray-light);
+                vertical-align: middle;
+            }
+
+            th {
+                background-color: rgba(37, 99, 235, 0.05);
+                font-weight: 600;
+                color: var(--primary-dark);
+                padding: var(--space-md) var(--space-lg);
+            }
+
+            tr:hover {
+                background-color: var(--gray-ultralight);
+            }
+
+            .actions-cell {
+                display: flex;
+                gap: var(--space-sm);
+                justify-content: flex-end;
+
+                .btn {
+                    padding: var(--space-xs) var(--space-sm);
+                    font-size: var(--text-sm);
+                    border-radius: var(--border-radius-base);
+                    display: flex;
+                    align-items: center;
+                    gap: var(--space-xs);
+                    transition: all var(--transition);
+                    border: none;
+                    cursor: pointer;
+                    min-height: 32px;
+
+                    i {
+                        font-size: var(--text-xs);
+                    }
+
+                    &.btn-approve {
+                        background-color: var(--success-color);
+                        color: var(--white);
+
+                        &:hover {
+                            background-color: var(--success-dark);
+                            transform: translateY(-1px);
+                        }
+                    }
+
+                    &.btn-reject,
+                    &.btn-delete {
+                        background-color: var(--error-color);
+                        color: var(--white);
+
+                        &:hover {
+                            background-color: var(--error-dark);
+                            transform: translateY(-1px);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section-title {
+    color: var(--primary-dark);
+    margin-bottom: var(--space-xl);
+    font-size: var(--text-xxl);
+    font-weight: 600;
+    padding-bottom: var(--space-sm);
+
+}
+
+.no-data {
+    text-align: center;
+    padding: var(--space-xl);
+    color: var(--text-light);
+    font-style: italic;
+    background-color: var(--white);
+    border-radius: var(--border-radius-md);
+    margin-top: var(--space-md);
+}
+
+
+.password-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(2px);
+
+    .modal-content {
+        background-color: var(--white);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-xl);
+        width: 100%;
+        max-width: 450px;
+        margin: var(--space-lg);
+        animation: fadeIn 0.3s ease-out;
+        padding: var(--space-lg); // Añadido padding general
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .flex.justify-end.gap-3 {
+            // Selector específico para el contenedor de botones
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--gray-light);
+
+            button {
+                // Estilos para los botones
+                padding: var(--space-sm) var(--space-md);
+                border-radius: var(--border-radius-base);
+                font-weight: 500;
+                transition: all var(--transition);
+                cursor: pointer;
+                border: none;
+                font-size: var(--text-sm);
+
+                &.btn-approve {
+                    background-color: var(--success-color);
+                    color: var(--white);
+
+                    &:hover {
+                        background-color: var(--success-dark);
+                    }
+                }
+
+                &.btn-reject {
+                    background-color: var(--error-color);
+                    color: var(--white);
+
+                    &:hover {
+                        background-color: var(--error-dark);
+                    }
+                }
+            }
+        }
+    }
+
+    .password-requirements {
+        margin-top: var(--space-sm);
+
+        ul {
+            margin-top: var(--space-xs);
+            padding-left: var(--space-md);
+        }
+
+        li {
+            margin-bottom: var(--space-xs);
+        }
+    }
+
+    .error-message {
+        margin-top: var(--space-xs);
+    }
+}

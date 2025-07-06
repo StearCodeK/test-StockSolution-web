@@ -1,0 +1,66 @@
+/* Reset básico para normalizar estilos entre navegadores */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  /* 1rem = 16px por defecto */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  /* Evita ajuste automático de texto en iOS */
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+}
+
+/* Elimina estilos por defecto de listas */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Elementos que no tienen clase obtienen estilos por defecto */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+/* Hereda fuentes para inputs y buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Elimina animaciones para quienes las tienen desactivadas */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mejora accesibilidad del focus */
+:focus:not(:focus-visible) {
+  outline: none;
+}

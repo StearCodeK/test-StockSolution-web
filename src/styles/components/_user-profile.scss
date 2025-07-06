@@ -1,0 +1,111 @@
+// components/_user-profile.scss
+
+.user-profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: spacing(sm);
+    padding: spacing(xs);
+    border-radius: radius(full);
+    transition: var(--transition);
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(37, 99, 235, 0.1);
+    }
+
+    .user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--primary-light);
+    }
+
+    .user-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+
+        .user-name {
+            font-weight: map-get($font-weights, semibold);
+            font-size: font-size(sm);
+            color: var(--text);
+        }
+
+        .user-role {
+            font-size: font-size(xs);
+            color: var(--text-light);
+        }
+    }
+
+    .user-dropdown {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+
+        .fa-chevron-down {
+            color: var(--text-light);
+            transition: transform 0.3s ease;
+        }
+
+        &.open .fa-chevron-down {
+            transform: rotate(180deg);
+        }
+    }
+
+    .dropdown-content {
+        position: absolute;
+        right: 0;
+        top: calc(100% + spacing(xs));
+        background: var(--white);
+        box-shadow: shadow(lg);
+        border-radius: radius(md);
+        padding: spacing(xs) 0;
+        min-width: 200px;
+        z-index: z-index(dropdown);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: var(--transition);
+
+        &::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            right: spacing(md);
+            border-width: 8px;
+            border-style: solid;
+            border-color: transparent transparent var(--white) transparent;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            padding: spacing(sm) spacing(md);
+            color: var(--text);
+            transition: var(--transition);
+
+            &:hover {
+                background-color: rgba(37, 99, 235, 0.1);
+                color: var(--primary-dark);
+            }
+
+            i {
+                margin-right: spacing(sm);
+                width: 1rem;
+                text-align: center;
+            }
+        }
+    }
+
+    &:hover .dropdown-content,
+    &:focus-within .dropdown-content,
+    .dropdown-content.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}

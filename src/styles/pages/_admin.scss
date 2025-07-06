@@ -1,0 +1,71 @@
+// Admin - Estilos específicos del panel de administración
+.admin {
+  &-panel {
+    width: 100%;
+    max-width: 1200px;
+    margin: var(--space-xl) auto;
+    padding: 0 var(--space-md);
+  }
+
+  &-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--space-lg);
+
+    th {
+      background-color: var(--color-primary-dark);
+      color: var(--color-white);
+      padding: var(--space-md);
+      text-align: left;
+      position: sticky;
+      top: 0;
+    }
+
+    td {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--color-gray-light);
+    }
+
+    tr:hover {
+      background-color: rgba(var(--color-primary-rgb), 0.1);
+    }
+  }
+
+  &-actions {
+    display: flex;
+    gap: var(--space-sm);
+
+    @media (max-width: breakpoint(sm)) {
+      flex-direction: column;
+    }
+  }
+}
+
+.request-card {
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  margin-bottom: var(--space-md);
+
+  &-title {
+    color: var(--color-primary-dark);
+    margin-bottom: var(--space-sm);
+  }
+
+  &-meta {
+    color: var(--color-text-light);
+    margin: var(--space-sm) 0;
+    font-size: var(--text-sm);
+  }
+
+  &-actions {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+
+    @media (max-width: breakpoint(sm)) {
+      flex-direction: column;
+    }
+  }
+}

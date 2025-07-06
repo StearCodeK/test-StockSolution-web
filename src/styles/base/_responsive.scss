@@ -1,0 +1,204 @@
+// _responsive.scss
+// ================
+// Responsive utilities and mixins for the design system
+
+
+// Mixins
+// ------
+
+/**
+ * Media query helper
+ * @param {string} $breakpoint - Breakpoint name (xs, sm, md, lg, xl, xxl)
+ * @content - Styles to apply within the media query
+ */
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' no existe en $breakpoints";
+  }
+}
+
+/**
+ * Mobile-first media query for max-width
+ */
+@mixin respond-to-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: (map-get($breakpoints, $breakpoint) - 0.02px)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' no existe en $breakpoints";
+  }
+}
+
+/**
+ * Media query for range between breakpoints
+ */
+@mixin respond-between($lower, $upper) {
+  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
+    @media (min-width: map-get($breakpoints, $lower)) and (max-width: (map-get($breakpoints, $upper) - 0.02px)) {
+      @content;
+    }
+  } @else {
+    @warn "Uno o ambos breakpoints no existen en $breakpoints";
+  }
+}
+
+// Responsive container
+// -------------------
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 spacing(md);
+
+  @include respond-to(sm) {
+    max-width: map-get($breakpoints, sm);
+  }
+
+  @include respond-to(md) {
+    max-width: map-get($breakpoints, md);
+  }
+
+  @include respond-to(lg) {
+    max-width: map-get($breakpoints, lg);
+  }
+
+  @include respond-to(xl) {
+    max-width: map-get($breakpoints, xl);
+  }
+
+  @include respond-to(xxl) {
+    max-width: map-get($breakpoints, xxl);
+  }
+}
+
+// Responsive utilities
+// -------------------
+
+// Generate responsive utility classes for each breakpoint
+@each $breakpoint, $size in $breakpoints {
+  @include respond-to($breakpoint) {
+    // Display utilities
+    .#{$breakpoint}\:d-none { display: none !important; }
+    .#{$breakpoint}\:d-block { display: block !important; }
+    .#{$breakpoint}\:d-flex { display: flex !important; }
+    .#{$breakpoint}\:d-grid { display: grid !important; }
+    .#{$breakpoint}\:d-inline { display: inline !important; }
+    .#{$breakpoint}\:d-inline-block { display: inline-block !important; }
+
+    // Flex direction
+    .#{$breakpoint}\:flex-row { flex-direction: row !important; }
+    .#{$breakpoint}\:flex-col { flex-direction: column !important; }
+
+    // Flex wrapping
+    .#{$breakpoint}\:flex-wrap { flex-wrap: wrap !important; }
+    .#{$breakpoint}\:flex-nowrap { flex-wrap: nowrap !important; }
+
+    // Justify content
+    .#{$breakpoint}\:justify-start { justify-content: flex-start !important; }
+    .#{$breakpoint}\:justify-end { justify-content: flex-end !important; }
+    .#{$breakpoint}\:justify-center { justify-content: center !important; }
+    .#{$breakpoint}\:justify-between { justify-content: space-between !important; }
+
+    // Align items
+    .#{$breakpoint}\:items-start { align-items: flex-start !important; }
+    .#{$breakpoint}\:items-end { align-items: flex-end !important; }
+    .#{$breakpoint}\:items-center { align-items: center !important; }
+
+    // Spacing utilities
+    @each $size, $value in $spacing {
+      .#{$breakpoint}\:m-#{$size} { margin: $value !important; }
+      .#{$breakpoint}\:mx-#{$size} { margin-left: $value !important; margin-right: $value !important; }
+      .#{$breakpoint}\:my-#{$size} { margin-top: $value !important; margin-bottom: $value !important; }
+      .#{$breakpoint}\:mt-#{$size} { margin-top: $value !important; }
+      .#{$breakpoint}\:mb-#{$size} { margin-bottom: $value !important; }
+      .#{$breakpoint}\:ml-#{$size} { margin-left: $value !important; }
+      .#{$breakpoint}\:mr-#{$size} { margin-right: $value !important; }
+
+      .#{$breakpoint}\:p-#{$size} { padding: $value !important; }
+      .#{$breakpoint}\:px-#{$size} { padding-left: $value !important; padding-right: $value !important; }
+      .#{$breakpoint}\:py-#{$size} { padding-top: $value !important; padding-bottom: $value !important; }
+      .#{$breakpoint}\:pt-#{$size} { padding-top: $value !important; }
+      .#{$breakpoint}\:pb-#{$size} { padding-bottom: $value !important; }
+      .#{$breakpoint}\:pl-#{$size} { padding-left: $value !important; }
+      .#{$breakpoint}\:pr-#{$size} { padding-right: $value !important; }
+    }
+
+    // Text alignment
+    .#{$breakpoint}\:text-left { text-align: left !important; }
+    .#{$breakpoint}\:text-center { text-align: center !important; }
+    .#{$breakpoint}\:text-right { text-align: right !important; }
+
+    // Visibility
+    .#{$breakpoint}\:visible { visibility: visible !important; }
+    .#{$breakpoint}\:invisible { visibility: hidden !important; }
+  }
+}
+
+// Responsive typography
+// --------------------
+// Extend the typography from _typography.scss with responsive adjustments
+
+@include respond-to(md) {
+  h1 {
+    font-size: clamp(font-size(xxl), 5vw, 2.5rem);
+    line-height: 1.1;
+  }
+
+  h2 {
+    font-size: clamp(font-size(xl), 4vw, 2rem);
+    line-height: 1.15;
+  }
+
+  p {
+    font-size: font-size(md);
+    line-height: 1.7;
+  }
+}
+
+// Responsive grid system
+// ---------------------
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: spacing(md);
+
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Mobile-specific helpers
+// -----------------------
+.mobile-only {
+  @include respond-to(md) {
+    display: none !important;
+  }
+}
+
+.desktop-only {
+  display: none !important;
+
+  @include respond-to(md) {
+    display: block !important;
+  }
+}
+
+// Print styles
+// -----------
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

@@ -1,0 +1,35 @@
+// Importar archivos base
+
+@import 'base/reset';
+@import 'base/variables';
+@import 'base/globals';
+@import 'base/typography';
+@import 'base/utilities';
+
+// Importar componentes
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/cards';
+@import 'components/tables';
+@import 'components/modal';
+@import 'components/sidebar';
+@import 'components/activity';
+@import 'components/tasks';
+@import 'components/_user-profile';
+
+// Importar layout
+@import 'layout/layout';
+@import 'layout/header';
+@import 'layout/footer';
+@import 'layout/grid';
+@import 'layout/navigation';
+
+// Importar páginas
+@import 'pages/aboutContent';
+@import 'pages/dashboard';
+@import 'pages/auth';
+@import 'pages/home';
+@import 'pages/admin';
+@import 'pages/historial';
+@import 'pages/accesos';
+@import 'pages/importacion';

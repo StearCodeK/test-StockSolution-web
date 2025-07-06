@@ -1,0 +1,75 @@
+// Variables locales
+$card-padding: 1.5rem;
+$card-border-radius: 0.5rem;
+$card-shadow: var(--shadow);
+$card-hover-transform: translateY(-5px);
+
+// Estilo base de tarjeta
+.card {
+  background-color: var(--white);
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  padding: $card-padding;
+  transition: var(--transition);
+  
+  &:hover {
+    transform: $card-hover-transform;
+  }
+}
+
+// Variantes de tarjeta
+.card-primary {
+  border-top: 3px solid var(--primary-color);
+}
+
+.card-success {
+  border-top: 3px solid #28a745;
+}
+
+.card-warning {
+  border-top: 3px solid #ffc107;
+}
+
+// Elementos de tarjeta
+.card-header {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+.card-title {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.card-body {
+  margin-bottom: 1rem;
+}
+
+.card-footer {
+  padding-top: 1rem;
+  margin-top: 1rem;
+  border-top: 1px solid var(--gray-light);
+}
+
+// Grid de tarjetas
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}

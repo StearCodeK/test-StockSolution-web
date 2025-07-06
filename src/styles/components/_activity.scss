@@ -1,0 +1,28 @@
+// components/_activity.scss
+
+.recent-activity {
+    .activity-list {
+        margin-top: 1.5rem;
+
+        .activity-item {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+
+            p {
+                margin: 0;
+                color: var(--text);
+
+                strong {
+                    color: var(--primary-dark);
+                }
+
+                small {
+                    color: var(--text-light);
+                    display: block;
+                    margin-top: 0.25rem;
+                    font-size: 0.8rem;
+                }
+            }
+        }
+    }
+}

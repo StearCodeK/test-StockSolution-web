@@ -1,0 +1,144 @@
+// Variables locales
+$header-bg: var(--white);
+$header-shadow: var(--shadow);
+$header-padding-y: 1rem;
+$header-padding-x: 2rem;
+$header-zindex: 100;
+
+// Estilos base del header
+.main-header {
+  background-color: $header-bg;
+  box-shadow: $header-shadow;
+  width: 100%;
+  position: relative;
+  z-index: 90;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+
+}
+
+// Contenedor del header
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $header-padding-y $header-padding-x;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: flex-start; // Alinear todo a la izquierda
+    align-items: center; // Centrar verticalmente
+    gap: 2rem; // Espacio entre elementos
+    padding: $header-padding-y $header-padding-x;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 1320px;
+  }
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: map-get($font-weights, semibold);
+  color: var(--primary-dark);
+  margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 1.75rem;
+    margin-left: 0; // Resetear margen izquierdo
+    position: static; // Quitar posicionamiento absoluto
+    transform: none; // Quitar transform
+    order: 1; // Orden normal
+    flex-grow: 0; // No crecer
+  }
+
+  @media (min-width: 992px) {
+    font-size: 2rem;
+  }
+}
+
+
+
+
+// Logo del header
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 0;
+  }
+
+  i {
+    font-size: 1.75rem;
+    color: var(--primary-color);
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+
+    @media (max-width: 360px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  span {
+    color: var(--primary-color);
+  }
+}
+
+// Menú hamburguesa
+.mobile-nav-toggle {
+  display: none;
+
+  @media (max-width: 767px) {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 110;
+  }
+}
+
+.header-right {
+  @media (min-width: 768px) {
+    margin-left: auto; // Empujar a la derecha
+    order: 2;
+  }
+}
+
+/* Estilos para el dropdown del perfil */
+.profile-details {
+  padding: 1rem;
+  min-width: 250px;
+}
+
+.profile-details h4 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.profile-details p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background-color: #eee;
+  margin: 0.5rem 0;
+}
