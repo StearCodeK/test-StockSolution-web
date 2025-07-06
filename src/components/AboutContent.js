@@ -89,10 +89,10 @@ export default function AboutContent() {
             <section>
                 <h2>PRODUCTOS CULTIVADOS CON TÉCNICA TRADICIONAL</h2>
                 <p>
-                    Los productos "agroponicos" o no hidroponicos, son aquellos que tienen contacto directo con el suelo. Del mismo suelo estas plantas sacaran sus nutrientes y todo lo necesario para crecer.
+                    Los productos &quot;agroponicos&quot; o no hidroponicos, son aquellos que tienen contacto directo con el suelo. Del mismo suelo estas plantas sacaran sus nutrientes y todo lo necesario para crecer.
                 </p>
                 <p>
-                    Entre nuestro productos agroponicos o "no hidroponicos" encontraran los siguientes: Maiz, Cebollin, Lechuga de Campo, Radiccio y Rucula
+                    Entre nuestro productos agroponicos o &quot;no hidroponicos&quot; encontraran los siguientes: Maiz, Cebollin, Lechuga de Campo, Radiccio y Rucula.
                 </p>
 
                 {
