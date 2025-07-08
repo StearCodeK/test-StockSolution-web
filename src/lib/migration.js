@@ -693,8 +693,7 @@ class TransactionProcessor extends DataProcessor {
     // Registrar registros omitidos
     if (skippedRecords.length > 0) {
       logger.warn(
-        `Se omitieron ${
-          skippedRecords.length
+        `Se omitieron ${skippedRecords.length
         } registros en el lote. Ejemplos: ${JSON.stringify(
           skippedRecords.slice(0, 3)
         )}`

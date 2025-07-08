@@ -31,7 +31,7 @@ $header-zindex: 100;
 
   @media (min-width: 768px) {
     flex-direction: row;
-    justify-content: flex-start; // Alinear todo a la izquierda
+    justify-content: space-between; // Espacio entre logo y menú
     align-items: center; // Centrar verticalmente
     gap: 2rem; // Espacio entre elementos
     padding: $header-padding-y $header-padding-x;

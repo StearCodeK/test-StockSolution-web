@@ -15,6 +15,25 @@ export default function ActivitySection() {
     const loadRecentActivity = async () => {
         try {
             setLoading(true);
+
+            // Obtener el usuario autenticado
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                throw new Error('Usuario no autenticado');
+            }
+
+            // Obtener el id_usuario de la tabla usuarios
+            const { data: usuarioData, error: usuarioError } = await supabase
+                .from('usuarios')
+                .select('id_usuario')
+                .eq('id_auth', user.id)
+                .single();
+
+            if (usuarioError || !usuarioData) {
+                throw usuarioError || new Error('Usuario no encontrado');
+            }
+
+            // Consultar los registros filtrados por id_usuario
             const { data, error } = await supabase
                 .from('registros_usuario')
                 .select(`
@@ -23,6 +42,7 @@ export default function ActivitySection() {
                     clientes_sucursales(cod_cliente),
                     inventario_final
                 `)
+                .eq('id_usuario', usuarioData.id_usuario) // Filtro por usuario
                 .order('fecha_registro', { ascending: false })
                 .limit(5);
 

@@ -1,0 +1,120 @@
+// src/styles/_contacto.scss
+.contact-form-container {
+    max-width: 450px; // Mismo ancho que auth-forms
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem; // Mismo padding
+    background-color: var(--white);
+    border-radius: 0.75rem; // Mismo radio de borde
+    box-shadow: var(--shadow); // Misma sombra
+    position: relative;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 1.5rem; // Mismo margen inferior que auth
+        color: var(--primary-dark);
+        font-size: 1.5rem; // Mismo tamaño de fuente
+        font-weight: 700;
+        // Eliminamos media queries para mantener consistencia
+    }
+
+    p {
+        text-align: center;
+        color: var(--text-light);
+        margin-bottom: 1.5rem; // Igual que el margen de auth
+        font-size: 0.95rem; // Tamaño similar al de auth
+        line-height: 1.5;
+    }
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; // Espaciado similar
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        label {
+            font-size: 0.85rem; // Similar a los labels de auth
+            color: var(--primary-dark);
+            font-weight: 500;
+        }
+
+        input,
+        textarea {
+            padding: 0.65rem 1rem; // Padding similar
+            border: 1px solid var(--gray-light);
+            border-radius: 0.5rem;
+            font-size: 0.95rem; // Tamaño de fuente similar
+            transition: var(--transition);
+
+            &:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.1);
+            }
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px; // Altura reducida para coincidir con el estilo compacto
+        }
+    }
+
+    button {
+        padding: 0.75rem; // Mismo padding vertical que auth
+        width: 100%; // Ancho completo como en auth
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        margin-top: 0.5rem;
+
+        &:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        &:disabled {
+            background-color: var(--gray-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+    }
+}
+
+.submit-message {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.85rem; // Tamaño similar a los textos de auth
+
+    &.success {
+        color: var(--success-color);
+        background-color: rgba(var(--success-color-rgb), 0.1);
+    }
+
+    &.error {
+        color: var(--error-color);
+        background-color: rgba(var(--error-color-rgb), 0.1);
+    }
+}
+
+// Media queries consistentes con auth
+@media (max-width: 480px) {
+    .contact-form-container {
+        padding: 1.5rem;
+
+        h2 {
+            font-size: 1.3rem;
+        }
+    }
+}

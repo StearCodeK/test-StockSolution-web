@@ -186,7 +186,11 @@ export default function AuthWrapper({ children }) {
     // Si es ruta privada, mostrar con sidebar
     return (
         <AuthContext.Provider value={authValue}>
-            <div className="app-container">
+            <div className="app-container" style={{
+                display: 'flex',
+                flexDirection: 'column',
+                minHeight: '100vh'
+            }}>
                 <Sidebar
                     isAdmin={currentUser?.rol === "admin"}
                     isOpen={mobileMenuOpen}
@@ -196,7 +200,12 @@ export default function AuthWrapper({ children }) {
                     className={`sidebar-overlay ${mobileMenuOpen ? "active" : ""}`}
                     onClick={() => setMobileMenuOpen(false)}
                 />
-                <main className="main-content">
+                <main className="main-content" style={{
+                    flex: 1,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'  // Centra el contenido verticalmente
+                }}>
                     <header className="main-header">
                         <div className="header-container">
                             <button
@@ -211,9 +220,16 @@ export default function AuthWrapper({ children }) {
                             </div>
                         </div>
                     </header>
-                    <div className="content-area">{children}</div>
-                    <Footer />
+                    <div className="content-area" style={{
+                        flex: 1,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center'  // Centra el contenido verticalmente
+                    }}>
+                        {children}
+                    </div>
                 </main>
+                <Footer />
             </div>
         </AuthContext.Provider>
     );

@@ -2,6 +2,8 @@
 "use client";
 
 import ExportButton from './ExportButton';
+import Select from 'react-select';
+import { useState, useEffect } from 'react';
 
 export default function FilterPanel({
     isAdmin,
@@ -14,98 +16,144 @@ export default function FilterPanel({
     isExporting,
     setIsExporting = { setIsExporting }
 }) {
+    // Convertir las opciones de filtro al formato que espera react-select
+    const [selectOptions, setSelectOptions] = useState({
+        users: [],
+        clients: [],
+        states: [],
+        locations: [],
+        articles: []
+    });
+
+    useEffect(() => {
+        setSelectOptions({
+            users: filterOptions.users.map(user => ({
+                value: user.id,
+                label: user.full_name
+            })),
+            clients: filterOptions.clients.map(client => ({
+                value: client.id_cliente_maestro,
+                label: client.nombre_cliente
+            })),
+            states: filterOptions.states.map(state => ({
+                value: state.id_estado,
+                label: state.nombre_estado
+            })),
+            locations: filterOptions.locations.map(location => ({
+                value: location.id_ubicacion,
+                label: location.nombre_ubicacion
+            })),
+            articles: filterOptions.articles.map(article => ({
+                value: article.id_articulo,
+                label: article.nombre_articulo
+            }))
+        });
+    }, [filterOptions]);
+
+    // Manejador genérico para react-select
+    const handleSelectChange = (selectedOption, { name }) => {
+        const syntheticEvent = {
+            target: {
+                name,
+                value: selectedOption ? selectedOption.value : ''
+            }
+        };
+        onFilterChange(syntheticEvent);
+    };
+
+    // Manejador para fechas (se mantiene igual)
+    const handleDateChange = (e) => {
+        onFilterChange(e);
+    };
+
+    // Obtener el valor seleccionado actual para react-select
+    const getCurrentValue = (options, currentId) => {
+        if (!currentId) return null;
+        return options.find(option => option.value === currentId);
+    };
+
     return (
         <div className="filter-container">
             {isAdmin && activeTab === 'movimientos' && (
                 <div className="form-group">
                     <label htmlFor="filterUser">Usuario:</label>
-                    <select
+                    <Select
                         id="filterUser"
                         name="userId"
-                        className="form-control"
-                        value={filters.userId}
-                        onChange={onFilterChange}
-                    >
-                        <option value="">Todos</option>
-                        {filterOptions.users.map(user => (
-                            <option key={user.id} value={user.id}>
-                                {user.full_name}
-                            </option>
-                        ))}
-                    </select>
+                        className="react-select-container"
+                        classNamePrefix="react-select"
+                        value={getCurrentValue(selectOptions.users, filters.userId)}
+                        onChange={handleSelectChange}
+                        options={selectOptions.users}
+                        placeholder="Buscar usuario..."
+                        isClearable
+                        isSearchable
+                    />
                 </div>
             )}
 
             <div className="form-group">
                 <label htmlFor="filterClient">Cliente:</label>
-                <select
+                <Select
                     id="filterClient"
                     name="clientId"
-                    className="form-control"
-                    value={filters.clientId}
-                    onChange={onFilterChange}
-                >
-                    <option value="">Todos</option>
-                    {filterOptions.clients.map(client => (
-                        <option key={client.id_cliente_maestro} value={client.id_cliente_maestro}>
-                            {client.nombre_cliente}
-                        </option>
-                    ))}
-                </select>
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                    value={getCurrentValue(selectOptions.clients, filters.clientId)}
+                    onChange={handleSelectChange}
+                    options={selectOptions.clients}
+                    placeholder="Buscar cliente..."
+                    isClearable
+                    isSearchable
+                />
             </div>
 
             <div className="form-group">
                 <label htmlFor="filterState">Estado:</label>
-                <select
+                <Select
                     id="filterState"
                     name="stateId"
-                    className="form-control"
-                    value={filters.stateId}
-                    onChange={onFilterChange}
-                >
-                    <option value="">Todos</option>
-                    {filterOptions.states.map(state => (
-                        <option key={state.id_estado} value={state.id_estado}>
-                            {state.nombre_estado}
-                        </option>
-                    ))}
-                </select>
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                    value={getCurrentValue(selectOptions.states, filters.stateId)}
+                    onChange={handleSelectChange}
+                    options={selectOptions.states}
+                    placeholder="Buscar estado..."
+                    isClearable
+                    isSearchable
+                />
             </div>
 
             <div className="form-group">
                 <label htmlFor="filterLocation">Ubicación:</label>
-                <select
+                <Select
                     id="filterLocation"
                     name="locationId"
-                    className="form-control"
-                    value={filters.locationId}
-                    onChange={onFilterChange}
-                >
-                    <option value="">Todos</option>
-                    {filterOptions.locations.map(location => (
-                        <option key={location.id_ubicacion} value={location.id_ubicacion}>
-                            {location.nombre_ubicacion}
-                        </option>
-                    ))}
-                </select>
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                    value={getCurrentValue(selectOptions.locations, filters.locationId)}
+                    onChange={handleSelectChange}
+                    options={selectOptions.locations}
+                    placeholder="Buscar ubicación..."
+                    isClearable
+                    isSearchable
+                />
             </div>
 
             <div className="form-group">
                 <label htmlFor="filterArticle">Artículo:</label>
-                <select
+                <Select
                     id="filterArticle"
                     name="articleId"
-                    className="form-control"
-                    value={filters.articleId}
-                    onChange={onFilterChange}
-                >
-                    <option value="">Todos</option>
-                    {filterOptions.articles.map(article => (
-                        <option key={article.id_articulo} value={article.id_articulo}>
-                            {article.nombre_articulo}
-                        </option>
-                    ))}
-                </select>
+                    className="react-select-container"
+                    classNamePrefix="react-select"
+                    value={getCurrentValue(selectOptions.articles, filters.articleId)}
+                    onChange={handleSelectChange}
+                    options={selectOptions.articles}
+                    placeholder="Buscar artículo..."
+                    isClearable
+                    isSearchable
+                />
             </div>
 
             <div className="form-group">
@@ -116,7 +164,7 @@ export default function FilterPanel({
                     name="dateFrom"
                     className="form-control"
                     value={filters.dateFrom}
-                    onChange={onFilterChange}
+                    onChange={handleDateChange}
                 />
             </div>
 
@@ -128,7 +176,7 @@ export default function FilterPanel({
                     name="dateTo"
                     className="form-control"
                     value={filters.dateTo}
-                    onChange={onFilterChange}
+                    onChange={handleDateChange}
                 />
             </div>
 

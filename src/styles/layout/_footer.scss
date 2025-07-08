@@ -10,12 +10,10 @@ $footer-border-color: var(--gray-light);
   background-color: $footer-bg;
   box-shadow: $footer-shadow;
   padding: $footer-padding-y 0 0;
-  margin-top: 3rem;
   border-radius: 0.5rem;
   text-align: center;
   align-items: center;
-
-
+  width: 100%;
 }
 
 // Contenedor del footer

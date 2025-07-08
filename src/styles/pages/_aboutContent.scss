@@ -1,6 +1,5 @@
 // scss/pages/aboutContent.scss
 
-
 .about-content {
     max-width: 1200px;
     margin: 0 auto;
@@ -21,7 +20,8 @@
     }
 
     .main-image {
-        margin: var(--space-xl) 0;
+        width: 40%; // Reducimos el ancho de la imagen principal
+        margin: var(--space-xl) auto; // Centramos la imagen
         border-radius: var(--border-radius-lg);
         overflow: hidden;
         box-shadow: var(--shadow);
@@ -61,7 +61,7 @@
         }
 
         .product-image {
-            width: 100%;
+            width: 40%;
             max-width: 600px;
             height: auto;
             margin: var(--space-md) auto;
